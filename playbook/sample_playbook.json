@@ -1,0 +1,21 @@
+{
+  "campaign": "APT Attack on Bank of Islington",
+  "stages": [
+    {
+      "module": "login_bruteforce",
+      "target_url": "http://localhost:8080/pages/login.php"
+    },
+    {
+      "module": "xss_about",
+      "target_url": "http://localhost:8080/pages/register.php"
+    },
+    {
+      "module": "idor_transfer",
+      "target_url": "http://localhost:8080/src/functions/transfer-submit.php"
+    },
+    {
+      "module": "sql_injection",
+      "target_url": "http://localhost:8080/pages/login.php"
+    }
+  ]
+}

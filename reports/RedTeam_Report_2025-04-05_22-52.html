@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Red Team Simulation Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; }
+        h1 { color: #2c3e50; }
+        .summary { margin-bottom: 30px; }
+        .summary p { font-size: 16px; }
+        .stage-header { background-color: #f1f1f1; padding: 10px; border-left: 5px solid #2c3e50; margin-top: 30px; }
+        .stage { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { color: green; font-weight: bold; }
+        .failure { color: red; font-weight: bold; }
+        .remediation { margin-top: 10px; background-color: #fef9e7; padding: 10px; border-left: 4px solid orange; }
+    </style>
+</head>
+<body>
+    <h1>Red Team Simulation Report</h1>
+    <div class="summary">
+        <p><strong>Date:</strong> 2025-04-05 22:52</p>
+        <p><strong>Total Checks:</strong> 4</p>
+        <p><strong>Passed:</strong> <span class="success">2</span></p>
+        <p><strong>Failed:</strong> <span class="failure">2</span></p>
+    </div>
+    <hr>
+
+    
+        <div class="stage-header">
+            <h2>Credential Access</h2>
+        </div>
+        
+            <div class="stage">
+                <h3>Credential Stuffing (T1110.004)</h3>
+                <p><strong>Status:</strong> 
+                    <span class="success">
+                        Success
+                    </span>
+                </p>
+                <p><strong>Details:</strong> Successfully authenticated with eve:test123</p>
+                <div class="remediation">
+                    <strong>Remediation:</strong> Use multi-factor authentication and monitor credential reuse.
+                </div>
+            </div>
+        
+    
+        <div class="stage-header">
+            <h2>Execution</h2>
+        </div>
+        
+            <div class="stage">
+                <h3>JavaScript Execution via XSS (T1059.007)</h3>
+                <p><strong>Status:</strong> 
+                    <span class="failure">
+                        Failed
+                    </span>
+                </p>
+                <p><strong>Details:</strong> XSS payload not reflected in response.</p>
+                <div class="remediation">
+                    <strong>Remediation:</strong> Sanitize inputs and use context-aware escaping.
+                </div>
+            </div>
+        
+    
+        <div class="stage-header">
+            <h2>IDOR</h2>
+        </div>
+        
+            <div class="stage">
+                <h3>IDOR (T1068)</h3>
+                <p><strong>Status:</strong> 
+                    <span class="failure">
+                        Failed
+                    </span>
+                </p>
+                <p><strong>Details:</strong> IDOR attack did not succeed.</p>
+                <div class="remediation">
+                    <strong>Remediation:</strong> Enforce session ownership validation.
+                </div>
+            </div>
+        
+    
+        <div class="stage-header">
+            <h2>Initial Access</h2>
+        </div>
+        
+            <div class="stage">
+                <h3>SQL Injection Login Bypass (T1190)</h3>
+                <p><strong>Status:</strong> 
+                    <span class="success">
+                        Success
+                    </span>
+                </p>
+                <p><strong>Details:</strong> Logged in using SQL injection payload: ' OR '1'='1' #</p>
+                <div class="remediation">
+                    <strong>Remediation:</strong> Use parameterized queries and validate login credentials securely.
+                </div>
+            </div>
+        
+    
+</body>
+</html>

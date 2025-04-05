@@ -1,0 +1,29 @@
+services:
+  www:
+    depends_on:
+      - db
+    build:
+      context: ./docker/php
+    volumes:
+    - "./src:/var/www/html"
+    ports:
+    - 8080:80
+    networks:
+      - boi-network
+
+  db:
+    image: mariadb:latest
+    environment:
+      - MARIADB_DATABASE=boi
+      - MARIADB_USER=boi
+      - MARIADB_PASSWORD=root
+      - MARIADB_ROOT_PASSWORD=root
+    networks:
+      - boi-network
+    volumes:
+      - "./db:/docker-entrypoint-initdb.d"
+
+# Networks
+networks:
+  boi-network:
+    driver: bridge

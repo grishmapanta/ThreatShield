@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; }
+        h1 { color: #2c3e50; }
+        .summary { margin-bottom: 30px; }
+        .summary p { font-size: 16px; }
+        .stage-header { background-color: #f1f1f1; padding: 10px; border-left: 5px solid #2c3e50; margin-top: 30px; }
+        .stage { margin-bottom: 20px; padding: 15px; border: 1px solid #ccc; border-radius: 5px; }
+        .success { color: green; font-weight: bold; }
+        .failure { color: red; font-weight: bold; }
+        .remediation { margin-top: 10px; background-color: #fef9e7; padding: 10px; border-left: 4px solid orange; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    <div class="summary">
+        <p><strong>Date:</strong> {{ date }}</p>
+        <p><strong>Total Checks:</strong> {{ total }}</p>
+        <p><strong>Passed:</strong> <span class="success">{{ success }}</span></p>
+        <p><strong>Failed:</strong> <span class="failure">{{ failed }}</span></p>
+    </div>
+    <hr>
+
+    {% for stage, entries in grouped_results.items() %}
+        <div class="stage-header">
+            <h2>{{ stage }}</h2>
+        </div>
+        {% for result in entries %}
+            <div class="stage">
+                <h3>{{ result.technique_name }} ({{ result.technique_id }})</h3>
+                <p><strong>Status:</strong> 
+                    <span class="{{ 'success' if result.success else 'failure' }}">
+                        {{ 'Success' if result.success else 'Failed' }}
+                    </span>
+                </p>
+                <p><strong>Details:</strong> {{ result.details }}</p>
+                <div class="remediation">
+                    <strong>Remediation:</strong> {{ result.remediation }}
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</body>
+</html>
